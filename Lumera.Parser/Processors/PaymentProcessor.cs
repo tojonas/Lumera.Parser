@@ -69,7 +69,7 @@ namespace Lumera.Parser.Processors
                 throw new InvalidDataException($"Number of payments read {_state.Payments.Count} does not match start record count {_state.PaymentStart.RecordCount}");
             }
             var totalAmount = _state.Payments.Sum(x => x.Amount);
-            if (_state.PaymentStart!.TotalAmount != totalAmount)
+            if (_state.PaymentStart.TotalAmount != totalAmount)
             {
                 throw new InvalidDataException($"Sum of payments read {totalAmount} does not match start record amount {_state.PaymentStart!.TotalAmount}");
             }

@@ -78,7 +78,7 @@ namespace Lumera.Parser.Processors
             {
                 throw new InvalidDataException($"Sum of deposits read {totalAmount} does not match end record amount {_state.DepositEnd.TotalAmount}");
             }
-            if (_state.DepositEnd!.TotalCount != _state.Deposits.Count)
+            if (_state.DepositEnd.TotalCount != _state.Deposits.Count)
             {
                 throw new InvalidDataException($"Number of deposits read {_state.Deposits.Count} does not match end record number of records {_state.DepositEnd.TotalCount}");
             }
