@@ -5,7 +5,7 @@ namespace Lumera.Parser.Extensions
 {
     public static class StringExtensions
     {
-        public static T Parse<T>(this string value, int start, int end, int decimalPointLocation = -1)
+        public static T Parse<T>(this string value, int start, int end)
         {
             if (start < 1)
             {
@@ -36,10 +36,6 @@ namespace Lumera.Parser.Extensions
 
             try
             {
-                if (decimalPointLocation != -1)
-                {
-                    part = part.Insert(part.Length - decimalPointLocation, ",");
-                }
                 return default(T) switch
                 {
                     int _ => (T)(object)int.Parse(part),
@@ -76,7 +72,7 @@ namespace Lumera.Parser.Extensions
             }
             return new Deposit
                             (
-                            Amount: value.Parse<decimal>(3, 22, 2),
+                            Amount: value.Parse<decimal>(3, 22)/100,
                             Currency: "SEK",
                             Reference: value.Parse<string>(41, 65)
                             );
@@ -89,7 +85,7 @@ namespace Lumera.Parser.Extensions
             }
             return new DepositEnd
                             (
-                            TotalAmount: value.Parse<decimal>(3, 22, 2),
+                            TotalAmount: value.Parse<decimal>(3, 22) / 100,
                             TotalCount: value.Parse<long>(31, 38)
                             );
         }
